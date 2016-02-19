@@ -10,12 +10,24 @@
 #include <iostream>
 #include <sstream>
 
+#ifdef _MSC_VER
+#if _MSC_VER < 1900
+#define MSVC_LOW 1
+#endif
+#endif
+
+#if MSVC_LOW
+#define _constexpr const
+#else
+#define _constexpr constexpr
+#endif
+
 #define DSELF() Debug(__func__)
 
 class Debug
 {
 protected:
-	static constexpr bool DEBUG_ACTIVE = true;
+	static _constexpr bool DEBUG_ACTIVE = true;
 	std::stringstream stream;
 	std::stringstream before;
 
@@ -61,7 +73,10 @@ protected:
 
 public:
 	Debug() = default;
+
+#ifndef MSVC_LOW
 	Debug(Debug&& move) = default;
+#endif
 	Debug(const Debug& copy) = delete;
 
 	template<typename T>

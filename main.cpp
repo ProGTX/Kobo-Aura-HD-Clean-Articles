@@ -126,7 +126,11 @@ vector<string> parseValues(const string& line, pos_t start, const size_t size) {
 				auto aposParenthesis = line.find(aposParenthesisSearch, prevComma + 1);
 
 				// Move after closing apostrophe
+#if MSVC_LOW
+				curComma = min(aposComma, aposParenthesis) + 1;
+#else
 				curComma = std::min(aposComma, aposParenthesis) + 1;
+#endif
 			}
 
 			values.push_back(line.substr(prevComma, curComma - prevComma));
