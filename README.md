@@ -5,9 +5,9 @@ Requires some extra work:
   1. Copy folders .kobo and .kobo-image from device memory to computer - e.g. in folder AuraDir
   2. Export AuraDir/.kobo/KoboReader.sqlite to AuraDir/sql/kobo.sql
     - Important to have a compact SQL format, as the program features very simple parsing
-    - SqliteBrowser was used in testing
+    - SqliteBrowser was used in testing (check "Keep column names in INSERT INTO", but NOT multiple rows in VALUES)
   3. Run program inside AuraDir
-  4. Convert AuraDir/sql/kobo_new.sql to AuraDir/sql/KoboReader.sqlite
+  4. Convert AuraDir/sql/kobo_new.sql to AuraDir/sql/KoboReader.sqlite (e.g. SqliteBrowser import)
   5. Replace AuraDir/.kobo/KoboReader.sqlite with AuraDir/sql/KoboReader.sqlite
   6. Delete folders .kobo and .kobo-image on device
     - May be a good idea to have a backup
